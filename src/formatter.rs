@@ -17,20 +17,15 @@ pub fn print_yaml(message: &str) {
     }
 }
 
-// Function to print a header message in yellow color
-pub fn print_header(message: &str) {
-    println!("{}", message.yellow().bold());
-}
-
 pub fn print_success(message: &str) {
     println!("{}", message.green().bold());
 }
 
 // Validates if the given yaml is valid
 // Returns true if valid, false otherwise
-pub fn validate_yaml(yaml: &str) -> Result<(), serde_yaml::Error> {
-    let _: serde_yaml::Value = serde_yaml::from_str(yaml)?;
-    Ok(())
+pub fn validate_yaml(yaml: &str) -> Result<serde_yaml::Value, serde_yaml::Error> {
+    let formatted: serde_yaml::Value = serde_yaml::from_str(yaml)?;
+    Ok(formatted)
 }
 
 #[cfg(test)]
