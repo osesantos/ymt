@@ -22,8 +22,40 @@ pub fn print_header(message: &str) {
     println!("{}", message.yellow().bold());
 }
 
+pub fn print_success(message: &str) {
+    println!("{}", message.green().bold());
+}
+
 // Validates if the given yaml is valid
 // Returns true if valid, false otherwise
-pub fn validate_yaml(yaml: &str) -> bool {
-    false
+pub fn validate_yaml(yaml: &str) -> Result<(), serde_yaml::Error> {
+    let _: serde_yaml::Value = serde_yaml::from_str(yaml)?;
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_validate_yaml_valid() {
+        let yaml = r#"
+        key1: value1
+        key2:
+          - item1
+          - item2
+        "#;
+        assert!(validate_yaml(yaml).is_ok());
+    }
+
+    #[test]
+    fn test_validate_yaml_invalid() {
+        let yaml = r#"
+        key1: value1
+        key2
+          - item1
+          - item2
+        "#;
+        assert!(validate_yaml(yaml).is_err());
+    }
 }
