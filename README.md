@@ -22,24 +22,24 @@ The binary will be in `target/release/ymt`.
 ## 🚀 Usage
 
 ### Validate a file
-+++bash
+```bash
 ymt config.yaml
-+++
+```
 
 ### Validate via pipe
-+++bash
+```bash
 cat config.yaml | ymt
-+++
+```
 
 ### Format a file
-+++bash
+```bash
 ymt format config.yaml
-+++
+```
 
 ### Format via pipe
-+++bash
+```bash
 cat config.yaml | ymt
-+++
+```
 
 > ⚠️ By default, the formatter prints to **stdout**.  
 
